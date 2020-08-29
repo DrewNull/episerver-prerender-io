@@ -1,7 +1,7 @@
 # episerver-prerender-io
 Episerver Prerender.io SDK
 
-# Example with Episerver Foundation SPA + ngrok
+## Example with Episerver Foundation SPA + ngrok
 
 Prerequisites: 
 
