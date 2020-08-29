@@ -1,11 +1,14 @@
 # episerver-prerender-io
 Episerver Prerender.io SDK
 
-# Setup
+# Example with Episerver Foundation SPA + ngrok
 
 Prerequisites: 
+
 - Go through the Foundation-Spa-React setup process.
 - Install **ngrok**: `npm install -g ngrok`
+
+Steps:
 
 1. Build and start Foundation-Spa-React CMS and frontend.
 2. Start **ngrok** from `./src/Spa.Frontend`.
