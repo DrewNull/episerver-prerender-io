@@ -7,29 +7,15 @@
         [ConfigurationProperty("url")]
         public string Url
         {
-            get
-            {
-                return (string)this["url"];
-            }
-
-            set
-            {
-                this["url"] = value;
-            }
+            get => (string)this["url"];
+            set => this["url"] = value;
         }
 
         [ConfigurationProperty("port", DefaultValue = 80)]
         public int Port
         {
-            get
-            {
-                return (int)this["port"];
-            }
-
-            set
-            {
-                this["port"] = value;
-            }
+            get => (int)this["port"];
+            set => this["port"] = value;
         }
     }
 }

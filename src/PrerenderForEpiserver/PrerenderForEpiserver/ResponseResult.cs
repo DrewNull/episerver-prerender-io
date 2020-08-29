@@ -6,24 +6,15 @@
     {
         public ResponseResult(HttpStatusCode code, string body, WebHeaderCollection headers)
         {
-            this.StatusCode = code;
-            this.ResponseBody = body;
             this.Headers = headers;
+            this.ResponseBody = body;
+            this.StatusCode = code;
         }
 
-        public HttpStatusCode StatusCode
-        {
-            get;
-        }
+        public WebHeaderCollection Headers { get; }
 
-        public string ResponseBody
-        {
-            get;
-        }
+        public string ResponseBody { get; }
 
-        public WebHeaderCollection Headers
-        {
-            get;
-        }
+        public HttpStatusCode StatusCode { get; }
     }
 }
