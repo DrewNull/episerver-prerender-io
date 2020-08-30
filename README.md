@@ -7,15 +7,16 @@ Ideally, websites would serve static, HTML-and-CSS-only pages for spiders to
 crawl. But consumer and business expectations demand rich web experiences that
 can only be delivered with sophisticated JavaScript implementations.
 
-Additionally, the time that it takes spiders to crawl a new site is nontrivial.
-Say you have a new site with 100,000 product pages. On launch day, once the DNS
+Additionally, the time it takes spiders to crawl a new site is nontrivial.
+Say you have a new site with 100,000 product pages. On launch day, once DNS
 cutover takes place, spiders won't instantly start crawling all 100,000 pages
-at once. The pages will queue for a set of spider workers to crawl and index.
-The heavier the JavaScript, the longer each will take to process. AJAX
-requests, even if the spider is smart enough to follow them, will also take
-time. You might encounter a scenario where your site takes hours, days, even
-weeks to ingest. Which translates directly to page rank. And for ecommerce
-sites, revenue.
+
+at once. The pages will queue for a set of workers to process. The heavier the
+JavaScript, the longer each will take to process. AJAX requests, even when the
+spider is smart enough to follow them, will also take time. You might
+encounter a scenario where your site takes hours, days, or even weeks to
+ingest. Which translates directly to page rank, conversions, and&mdash;for
+ecommerce sites&mdash;revenue.
 
 **Prerender.io** is a paid web service that makes this
 possible with very little friction. It accepts a request for a web page,
