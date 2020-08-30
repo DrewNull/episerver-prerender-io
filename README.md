@@ -148,15 +148,13 @@ An Episerver CMS Visual Studio solution is needed to get started.
     ```html
     <!-- Immediately above the closing </body> tag -->
     <script>
-        (function () {
-            setTimeout(
-                function () {
-                    window.prerenderReady = true;
-                },
-                // Wait 5 seconds
-                5000
-            );
-        })();
+        setTimeout(
+            function () {
+                window.prerenderReady = true;
+            },
+            // Wait 5 seconds
+            5000
+        );
     </script>
     ```
 
