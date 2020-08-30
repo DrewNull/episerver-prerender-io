@@ -17,13 +17,13 @@ encounter a scenario where your site takes hours, days, or even weeks to
 ingest. Which translates directly to page rank, conversions, and&mdash;for
 ecommerce sites&mdash;revenue.
 
-**Prerender.io** is a paid web service that makes this
-possible with very little friction. It accepts a request for a web page,
-renders it using Google Chrome in headless mode, and returns the HTML and CSS
-outputs as a static, "prerendered" page ideal for crawling. The prerendered
-pages are then cached for future requests. And can be seeded using the
-Prerender web portal. This can reduce the SEO rank dip that sites experience
-immediately following a new launch.
+**Prerender.io** is a paid web service that addresses these challenges with
+very little friction. It accepts a request for a web page, renders it using
+Google Chrome in headless mode, and returns the HTML and CSS outputs as a
+static, "prerendered" page ideal for crawling. The prerendered pages are then
+cached for future requests. And can be seeded using the Prerender web portal.
+This can reduce the SEO rank dip that sites experience immediately following a
+new launch.
 
 [https://prerender.io](https://prerender.io)
 
