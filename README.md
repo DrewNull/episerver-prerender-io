@@ -117,7 +117,7 @@ Prerender proxy in an Episerver CMS solution. The code borrows heavily from
 greengerong's repo, but has been trimmed down to highlight the necessary
 technique for integrating with Episerver.
 
-## Setup
+## Episerver Solution Setup
 
 An Episerver CMS Visual Studio solution is needed to get started.
 
@@ -158,7 +158,7 @@ An Episerver CMS Visual Studio solution is needed to get started.
     </script>
     ```
 
-## Testing
+## Testing with ngrok
 
 Prerender.io must be able to access the page that it renders. In other words, your page(s)
 must be publicly navigable. This can be done by exposing your local site publicly with the
