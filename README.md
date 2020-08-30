@@ -30,7 +30,7 @@ future requests.
 08  ··········          ··········
 09  (thinking)          ··········
 
-   Done
+    Done
 
 ```
 
