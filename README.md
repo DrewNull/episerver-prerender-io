@@ -10,7 +10,6 @@ can only be delivered with sophisticated JavaScript implementations.
 Additionally, the time it takes spiders to crawl a new site is nontrivial.
 Say you have a new site with 100,000 product pages. On launch day, once DNS
 cutover takes place, spiders won't instantly start crawling all 100,000 pages
-
 at once. The pages will queue for a set of workers to process. The heavier the
 JavaScript, the longer each will take to process. AJAX requests, even when the
 spider is smart enough to follow them, will also take time. You might
