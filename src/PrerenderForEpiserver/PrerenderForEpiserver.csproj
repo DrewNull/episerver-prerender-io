@@ -174,12 +174,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PrerenderConfigSection.cs" />
-    <Compile Include="PrerenderDefaults.cs" />
-    <Compile Include="PrerenderHttpModuleInitialization.cs" />
+    <Compile Include="PrerenderConstants.cs" />
+    <Compile Include="PrerenderExtensions.cs" />
+    <Compile Include="PrerenderHandler.cs" />
+    <Compile Include="PrerenderInitialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxyConfigElement.cs" />
-    <Compile Include="ResponseResult.cs" />
+    <Compile Include="PrerenderResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -2,9 +2,9 @@
 {
     using System.Net;
 
-    public class ResponseResult
+    public class PrerenderResponse
     {
-        public ResponseResult(HttpStatusCode code, string body, WebHeaderCollection headers)
+        public PrerenderResponse(HttpStatusCode code, string body, WebHeaderCollection headers)
         {
             this.Headers = headers;
             this.ResponseBody = body;

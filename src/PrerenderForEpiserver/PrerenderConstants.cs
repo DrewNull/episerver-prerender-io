@@ -3,8 +3,12 @@ namespace PrerenderForEpiserver
 {
     using System.Collections.Generic;
 
-    public static class PrerenderDefaults
+    public static class PrerenderConstants
     {
+        public const string EscapedFragmentQueryParameter = "_escaped_fragment_";
+        public const string ServiceUrl = "http://service.prerender.io";
+        public const string TokenAppSetting = "Prerender:Token";
+
         public static readonly List<string> CrawlerUserAgents = new List<string>
         {
             "Applebot",
