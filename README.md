@@ -217,7 +217,7 @@ If your site is already public, skip down to step 5.
 
 5.  **Build and start** your Episerver local web site (`Ctrl+F5`).
 
-6.  **Navigate** to your ngrok URL (e.g., `http://123xyz.ngrok.io`). If you did everything
+6.  **Navigate** to your public URL (e.g., `http://123xyz.ngrok.io` if using ngrok). If you did everything
     right, the site should come right up.
 
 7.  Finally, test Prerender, use devtools to **set your browser's user-agent** to that of a
