@@ -46,6 +46,7 @@ namespace PrerenderForEpiserver
         {
             ".ai",
             ".avi",
+            ".axd",
             ".css",
             ".dat",
             ".dmg",
