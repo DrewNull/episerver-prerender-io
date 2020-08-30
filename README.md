@@ -15,6 +15,80 @@ future requests.
 
 [https://prerender.io](https://prerender.io)
 
+#### Without Prerender
+
+```
+    SPIDER              WEBSITE   
+   
+01  ······ GET -------> ··········
+02  ·········· <------- 200 ······
+03  ··········          ··········
+04  (thinking)          ··········
+05  ··········          ··········
+06  GET (AJAX) -------> ··········
+07  ·········· <------- 200·······
+08  ··········          ··········
+09  (thinking)          ··········
+
+   Done
+
+```
+
+We're dependent on how well the spider handles JavaScript and whether it follows AJAX 
+requests. Also, it does too much waiting and thinking... 
+
+#### With Prerender (before caching)
+
+```
+    SPIDER              WEBSITE             PRERENDER 
+  
+01  ······ GET -------> ··········          ··········
+02  ··········          ······ GET -------> ··········
+03  ··········          ··········          ··········
+04  ··········          ·········· <------- GET ······
+05  ··········          ······ 200 -------> ··········
+06  ··········          ··········          ··········
+07  ··········          ··········          (thinking)
+08  ··········          ··········          ··········
+09  ··········          ·········· <------- GET (AJAX)
+10  ··········          ······ 200 -------> ··········
+11  ··········          ··········          ··········
+12  ··········          ··········          (thinking)
+13  ··········          ··········          ··········
+14  ··········          ·········· <------- 200 ······
+15  ·········· <------- 200 ······          ··········
+  
+    Done
+```
+
+- The middleware routes the spider's request to Prerender on line `2`.
+- Prerender requests the page from our website itself (lines `4-5`).
+- Prerender renders the page, conducting any AJAX requests along the way, caches the 
+  output, and sends it back to the original request from the website (lines `7-14`).
+- The website sends the request back to the spider (line `15`).
+
+Very little thinking on the part of the spider. 
+
+And once the page has been cached... 
+
+#### With Prerender (after caching)
+
+```
+    SPIDER              WEBSITE             PRERENDER 
+    
+01  ······ GET -------> ··········          ··········
+02  ··········          ······ GET -------> ··········
+03  ··········          ·········· <------- 200 ······
+04  ·········· <------- 200 ······          ··········
+    
+    Done
+```
+
+Prerender immediately sends the cached page back to the website, which forwards it to the 
+spider. 
+
+
+### Middleware
 
 **Official and community 
 [middleware SDKs](https://prerender.io/documentation/install-middleware)**
@@ -41,9 +115,35 @@ solution.
 
 3. Add the `Prerender:Token` appSetting to your Episerver CMS project Web.config.
 
-````````````````````````````````````````````````````````````````````````````````
-WORK IN PROGRESS
-````````````````````````````````````````````````````````````````````````````````
+4. Consider explicitly telling Prerender when your page is ready to be saved: 
+[more info](https://prerender.io/documentation/best-practices).
+
+    Prerender looks for a `window.prerenderReady` boolean to determine whether the page 
+    has finished loading. Set it to `false` at the top of the HTML, and then to `true` 
+    once your JavaScript has finished executing and your page is ready. 
+
+    As a simplistic example, use `setTimeout` to tell Prerender to wait for a moment 
+    before saving.
+
+    
+    ```html
+    <!-- Immediately below the opening <head> tag -->
+    <script> window.prerenderReady = false; </script>
+    ```
+
+    ```html
+    <!-- Immediately above the closing </body> tag -->
+    <script>
+        (function() {
+            setTimeout(
+                function() {
+                    window.prerenderReady = true;
+                },
+                // Wait 5 seconds
+                5000);
+        }());
+    </script>
+    ```
 
 ## Testing
 
