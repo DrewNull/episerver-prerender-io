@@ -21,9 +21,11 @@ ecommerce sites&mdash;revenue.
 very little friction. It accepts a request for a web page, renders it using
 Google Chrome in headless mode, and returns the HTML and CSS outputs as a
 static, "prerendered" page ideal for crawling. The prerendered pages are then
-cached for future requests. And can be seeded using the Prerender web portal.
-This can reduce the SEO rank dip that sites experience immediately following a
-new launch.
+cached for future requests.
+
+Pages can be seeded using the Prerender web portal. Either by hand or by
+pointing Prerender to a Sitemap.xml. This can reduce the SEO rank dip that
+sites experience immediately following a new launch.
 
 [https://prerender.io](https://prerender.io)
 
