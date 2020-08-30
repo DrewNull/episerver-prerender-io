@@ -158,13 +158,13 @@ An Episerver CMS Visual Studio solution is needed to get started.
     </script>
     ```
 
-## Testing with ngrok
+## Testing (with ngrok)
 
 Prerender.io must be able to access the page that it renders. In other words, your page(s)
 must be publicly navigable. This can be done by exposing your local site publicly with the
 free tier of [ngrok](https://ngrok.com) and some minor configuration changes.
 
-If your site is already public, skip down to step X.
+If your site is already public, skip down to step 5.
 
 1.  **Install ngrok**. This can be done in a number of ways. You can
     [download](https://ngrok.com/download) the app directly from their website. My preferred
