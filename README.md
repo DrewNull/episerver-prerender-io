@@ -1,4 +1,6 @@
-﻿## Background
+﻿# Prerender.io Middleware for Episerver CMS
+
+## Background
 
 **Search engine spiders** aren't great at crawling asynchronous JavaScript. 
 Ideally, websites would serve static, HTML-and-CSS-only pages for spiders to 
