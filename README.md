@@ -11,7 +11,7 @@ Additionally, the time it takes spiders to crawl a new site is nontrivial.
 Say you have a new site with 100,000 product pages. On launch day, once DNS
 cutover takes place, spiders won't instantly start crawling all 100,000 pages
 at once. The pages will queue for a set of workers to process. The heavier the
-JavaScript, the longer each will take to process. AJAX requests, even when the
+JavaScript, the longer each will take to process. XHRs, even when the
 spider is smart enough to follow them, will also take time. You might
 encounter a scenario where your site takes hours, days, or even weeks to
 ingest. Which translates directly to page rank, conversions, and&mdash;for
@@ -39,7 +39,7 @@ sites experience immediately following a new launch.
 03  ··········          ··········
 04  (thinking)          ··········
 05  ··········          ··········
-06  GET (AJAX) -------> ··········
+06  ···GET XHR -------> ··········
 07  ·········· <------- 200·······
 08  ··········          ··········
 09  (thinking)          ··········
@@ -49,7 +49,7 @@ sites experience immediately following a new launch.
 ```
 
 We're dependent on how well the spider handles JavaScript and whether it
-follows AJAX requests. Also, it does too much waiting and thinking...
+follows XHRs requests. Also, it does too much waiting and thinking...
 
 #### With Prerender (before caching)
 
@@ -64,7 +64,7 @@ follows AJAX requests. Also, it does too much waiting and thinking...
 06  ··········          ··········          ··········
 07  ··········          ··········          (thinking)
 08  ··········          ··········          ··········
-09  ··········          ·········· <------- GET (AJAX)
+09  ··········          ·········· <------- GET XHR···
 10  ··········          ······ 200 -------> ··········
 11  ··········          ··········          ··········
 12  ··········          ··········          (thinking)
@@ -77,7 +77,7 @@ follows AJAX requests. Also, it does too much waiting and thinking...
 
 -   The middleware routes the spider's request to Prerender on line `2`.
 -   Prerender requests the page from our website itself (lines `4-5`).
--   Prerender renders the page, conducting any AJAX requests along the way,
+-   Prerender renders the page, conducting any XHRs along the way,
     caches the output, and sends it back to the original request from the
     website (lines `7-14`).
 -   The website sends the request back to the spider (line `15`).
@@ -207,7 +207,7 @@ If your site is already public, skip down to step 5.
     it later.
 
 3.  Depending on your frontend implementation, you might need to **configure
-    CORS**. Foundation SPA, for example, will not accept AJAX requests from a
+    CORS**. Foundation SPA, for example, will not accept XHRs from a
     hostname that it doesn't expect.
 
     To get Foundation SPA working, find the `.env` file in `Spa.Frontend`

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="utf-8" />
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Lexend+Deca);
+            @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+            body {
+                font-family: "Lexend Deca";
+            }
+            .remark-code,
+            .remark-inline-code {
+                font-family: "Ubuntu Mono";
+            }
+        </style>
+    </head>
+    <body>
+        <textarea id="source">
+
+class: center, middle
+
+# Prerender.io for Episerver
+
+---
+
+## Background
+
+Visitors expect rich web experiences that can only be delivered with sophisticated JavaScript.
+
+But search engine spiders aren't awesome at crawling JS. 
+
+- JavaScript slows them down. 
+- They don't always follow XHRs.
+- Razor/SSR isn't always feasible (or a silver bullet anyways).
+
+Hundreds of thousands of pages could take days or even weeks to crawl.<br/>
+And it could be all wrong. 
+
+**There is uncertainty when launching a new site.**
+
+---
+
+## Background
+
+Prerender (https://prerender.io) is a paid web service that addresses these challenges with little friction: 
+
+1. It accepts a request to a web page via ?query,
+2. Renders the page using Google Chrome in headless mode,
+3. Caches the result for future requests, and
+4. Returns the static HTML and CSS outputs. 
+
+And comes recommended by Google: <br/>
+https://developers.google.com/search/docs/guides/dynamic-rendering
+
+Pages can be seeded using the Prerender web portal by hand or Sitemap.xml. 
+
+---
+
+## Without Prerender
+
+```
+    SPIDER              WEBSITE
+
+01  ······ GET -------> ··········
+02  ·········· <------- 200 ······
+03  ··········          ··········
+04  (thinking)          ··········
+05  ··········          ··········
+06  ···GET XHR -------> ··········
+07  ·········· <------- 200·······
+08  ··········          ··········
+09  (thinking)          ··········
+
+    Done
+```
+
+<br/>
+We're dependent on how well the spider handles JavaScript and whether it follows AJAX requests. 
+
+Also, it does too much waiting and thinking...
+
+---
+
+## With Prerender (before caching)
+
+```
+    SPIDER              WEBSITE             PRERENDER
+
+01  ······ GET -------> ··········          ··········  
+02  ··········          ······ GET -------> ··········  
+03  ··········          ··········          ··········  
+04  ··········          ·········· <------- GET ······  
+05  ··········          ······ 200 -------> ··········  
+06  ··········          ··········          ··········  
+07  ··········          ··········          (thinking)  
+08  ··········          ··········          ··········  
+09  ··········          ·········· <------- GET XHR··· 
+10  ··········          ······ 200 -------> ··········  
+11  ··········          ··········          ··········  
+12  ··········          ··········          (thinking)  
+13  ··········          ··········          ··········  
+14  ··········          ·········· <------- 200 ······  
+15  ·········· <------- 200 ······          ··········  
+
+    Done
+```
+
+<br/>
+Very little thinking on the part of the spider.
+
+---
+
+## With Prerender (after caching)
+
+```
+    SPIDER              WEBSITE             PRERENDER
+
+01  ······ GET -------> ··········          ··········
+02  ··········          ······ GET -------> ··········
+03  ··········          ·········· <------- 200 ······
+04  ·········· <------- 200 ······          ··········
+
+    Done
+```
+
+<br/>
+Prerender immediately sends the cached page back to the website, which forwards
+it to the spider.
+
+---
+
+## Middleware
+
+Your website must route incoming requests to Prerender!
+
+<br/>
+
+Official and community [middleware](https://prerender.io/documentation/install-middleware) options exist for speedy integration.
+
+There is an unofficial ASP.NET version:<br/>
+[https://github.com/greengerong/Prerender_asp_mvc](https://github.com/greengerong/Prerender_asp_mvc)
+
+<br/>
+
+Episerver requires some additional bootstrapping...
+
+---
+
+class: center, middle
+
+[https://github.com/drewnull/episerver-prerender-io](https://github.com/drewnull/episerver-prerender-io)
+
+    </textarea
+        >
+        <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+        <script>
+            var slideshow = remark.create();
+        </script>
+    </body>
+</html>
